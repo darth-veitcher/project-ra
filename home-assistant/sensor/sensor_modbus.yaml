@@ -1,0 +1,15 @@
+- platform: template
+  sensors:
+    battery_state_system_friendly:
+      friendly_name: "Battery State (System)"
+      # 0=idle;1=charging;2=discharging
+      value_template: >-
+        {% if (states('sensor.battery_state_system') | int(default=0) == 0) %}
+          Idle
+        {% elif (states('sensor.battery_state_system') | int(default=0) == 1) %}
+          Charging
+        {% elif (states('sensor.battery_state_system') | int(default=0) == 2) %}
+          Discharging
+        {% else %}
+          ERROR
+        {% endif %}

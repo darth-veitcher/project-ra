@@ -13,11 +13,49 @@
   host: !secret cerbo_ip
   port: 502
   sensors:
-    - name: "battery_voltage_system"
+    - name: "Battery Voltage (System)"
+      # Battery Voltage determined from different measurements. In order of preference: BMV-voltage (V), Multi-DC-Voltage (CV), MPPT-DC-Voltage (ScV), Charger voltage
       scan_interval: 10
       address: 840
       slave: !secret com.victronenergy.system
       data_type: uint16
       unit_of_measurement: "V DC"
       device_class: voltage
-      scale: 10
+      scale: 0.1
+      precision: 1
+    - name: "Battery Current (System)"
+      # Postive: battery begin charged. Negative: battery being discharged
+      scan_interval: 10
+      address: 841
+      slave: !secret com.victronenergy.system
+      data_type: int16
+      unit_of_measurement: "A DC"
+      device_class: current
+      scale: 0.1
+      precision: 1
+    - name: "Battery Power (System)"
+      # Postive: battery begin charged. Negative: battery being discharged
+      scan_interval: 10
+      address: 842
+      slave: !secret com.victronenergy.system
+      data_type: int16
+      unit_of_measurement: "W"
+      device_class: energy
+      scale: 1
+    - name: "Battery State of Charge (System)"
+      # Best battery state of charge, determined from different measurements.
+      scan_interval: 10
+      address: 843
+      slave: !secret com.victronenergy.system
+      data_type: uint16
+      unit_of_measurement: "%"
+      device_class: battery
+      scale: 1
+    - name: "Battery state (System)"
+      # 0=idle;1=charging;2=discharging
+      scan_interval: 10
+      address: 844
+      slave: !secret com.victronenergy.system
+      data_type: int16
+      device_class: battery
+      scale: 1
