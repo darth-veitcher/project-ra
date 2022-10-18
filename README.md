@@ -36,22 +36,9 @@ com.victronenergy.vebus: 227
 com.victronenergy.solarcharger: 100
 ```
 
-### Setup Configurations
+### Modbus Device Basic Concepts
 
-We need to modfiy both the overall `configuration.yaml` as well as the `sensors.yaml` file.
-
-```yaml
-# file: configuration.yaml
-# configuration entry for a TCP connection
-# used for victron energy device integration
-# needs to be added to the configuration.yaml
-# source: https://community.victronenergy.com/questions/78971/home-assistant-modbus-integration-tutorial.html
-name: victron
-type: tcphost: 192.168.1.205
-port: 502
-```
-
-This teall
+This is explained in far more detail elsewhere, including in the [Victron Energy: GC Modbus-TCP Manual](https://www.victronenergy.com/live/ccgx:modbustcp_faq), but in order to effectively utilise modbus devices we need to know both the `Unit ID` of the physical hardware and then the associated `register address` for the sensor/switch that we'd like to read/write. Whilst you can find the `Unit ID` above, the specifics for the `registers` have to be found from the manufacturers specification. In the instance of Victron they publish theirs in an Excel file that you need to download from their website. The version I am using is `CCGX-Modbus-TCP-register-list-2.90` which can be found [here](https://www.victronenergy.com/support-and-downloads/technical-information).
 
 ## Sources:
 
@@ -59,3 +46,5 @@ Thanks to the following for resources used in this process of learning:
 
 - [Victron Energy Forums: HA Modbus Integration Tutorial](https://community.victronenergy.com/questions/78971/home-assistant-modbus-integration-tutorial.html)
 - [lucode/home-assistant](https://github.com/lucode/home-assistant)
+- [Home Assistant: Modbus](https://www.home-assistant.io/integrations/modbus)
+- [Victron Energy: GC Modbus-TCP Manual](https://www.victronenergy.com/live/ccgx:modbustcp_faq)

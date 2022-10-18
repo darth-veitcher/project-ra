@@ -3,11 +3,21 @@
 # needs to be added to the configuration.yaml
 # source: https://community.victronenergy.com/questions/78971/home-assistant-modbus-integration-tutorial.html
 # source: https://github.com/lucode/home-assistant/blob/main/modbus.yaml
+# source: https://www.home-assistant.io/integrations/modbus
 
-# sensors
-- name: victron
-  retry_on_empty: true
-  retries: 10
+# modbus:
+- name: "victron"
   type: tcp
-  host: 192.168.1.205
+  delay: 5
+  timeout: 5
+  host: !secret cerbo_ip
   port: 502
+  sensors:
+    - name: "battery_voltage_system"
+      scan_interval: 10
+      address: 840
+      slave: !secret com.victronenergy.system
+      data_type: uint16
+      unit_of_measurement: "V DC"
+      device_class: voltage
+      scale: 10
