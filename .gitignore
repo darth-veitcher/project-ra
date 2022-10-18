@@ -1,0 +1,9 @@
+# Platform specifics
+# MacOS
+.DS_Store
+
+# REPO
+Pipfile
+Pipfile.lock
+.vscode
+data/

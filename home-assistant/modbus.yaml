@@ -1,0 +1,13 @@
+# configuration entry for a TCP connection
+# used for victron energy device integration
+# needs to be added to the configuration.yaml
+# source: https://community.victronenergy.com/questions/78971/home-assistant-modbus-integration-tutorial.html
+# source: https://github.com/lucode/home-assistant/blob/main/modbus.yaml
+
+# sensors
+- name: victron
+  retry_on_empty: true
+  retries: 10
+  type: tcp
+  host: 192.168.1.205
+  port: 502

@@ -1,0 +1,44 @@
+version: "3"
+
+services:
+  # -- CORE --
+  # main home assistant container
+  homeassistant:
+    container_name: hass
+    image: homeassistant/home-assistant:stable
+    volumes:
+      - ./data/home-assistant:/config
+      - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
+    environment:
+      PUID: "${PUID}"
+      PGID: "${PGID}"
+      TZ: "Europe/London"
+    # network_mode: host
+    ports:
+      - "8123:8123"
+    # privileged: true
+    depends_on:
+      core-mariadb:
+        condition: service_healthy
+
+  # databse for home assistant
+  core-mariadb:
+    image: linuxserver/mariadb
+    container_name: core-mariadb
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MYSQL_DATABASE: homeassistant
+      MYSQL_USER: homeassistant
+      MYSQL_PASSWORD: "${HA_MYSQL_PASSWORD}"
+      PUID: "${PUID}"
+      PGID: "${PGID}"
+    volumes:
+      - ./data/mariadb:/config
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
