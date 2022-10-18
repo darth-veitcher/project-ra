@@ -181,6 +181,10 @@ This has to be done in hideous yaml unfortunately using jinja2 syntax... We use 
         {% endif %}
 ```
 
+You should now be able to create a card within Home Assistant that contains the details and history for the system battery.
+
+![basic ui card](assets/example-lovelace-card-read-battery.png)
+
 ## Sources
 
 Thanks to the following for resources used in this process of learning:
