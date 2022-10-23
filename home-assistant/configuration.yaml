@@ -13,9 +13,9 @@ tts:
   - platform: google_translate
 
 notify:
-# not included
 
-# Includes
+# required for HACS
+my:
 
 # Templates / modbus conf
 modbus: !include modbus.yaml
