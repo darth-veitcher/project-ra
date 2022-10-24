@@ -8,6 +8,21 @@ pipeline:
       - python -m pip install poetry
       - poetry run pip install -r requirements-dev.txt
       - git config --global user.name=ci-bot && git config --global user.email=ci-bot@statemachine.ai
-      - if [ ${CI_COMMIT_TARGET_BRANCH} = 'master' ]; then export ALIAS='latest'; else export ALIAS=${CI_COMMIT_TARGET_BRANCH}; fi
+      - export ALIAS='latest'
       - VERSION=$$(poetry version -s); poetry run mike deploy $${VERSION} $${ALIAS} || poetry run mike deploy --push --update-aliases $${VERSION} $${ALIAS}
+    when:
+      branch: master
+  docs-develop:
+    image: python:3.9-alpine
+    pull: true
+    commands:
+      - apk add --no-cache --virtual .build-deps gcc musl-dev &&
+        apk add --no-cache git bash build-base libffi-dev openssl-dev bzip2-dev zlib-dev readline-dev sqlite-dev curl && rm -rf /var/cache/apk/*
+      - python -m pip install poetry
+      - poetry run pip install -r requirements-dev.txt
+      - git config --global user.name=ci-bot && git config --global user.email=ci-bot@statemachine.ai
+      - export ALIAS='develop'
+      - VERSION=$$(poetry version -s); poetry run mike deploy $${VERSION} $${ALIAS} || poetry run mike deploy --push --update-aliases $${VERSION} $${ALIAS}
+    when:
+      branch: develop
 branches: [master, develop]
