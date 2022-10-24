@@ -7,10 +7,10 @@ pipeline:
         apk add --no-cache git bash build-base libffi-dev openssl-dev bzip2-dev zlib-dev readline-dev sqlite-dev curl && rm -rf /var/cache/apk/*
       - python -m pip install nox
       - python -m pip install poetry
-      - nox --session "docs"
+      - nox --session docs
     when:
       branch: develop
-  docs-dev:
+  docs-prod:
     image: python:3.9-alpine
     pull: true
     commands:
@@ -18,7 +18,7 @@ pipeline:
         apk add --no-cache git bash build-base libffi-dev openssl-dev bzip2-dev zlib-dev readline-dev sqlite-dev curl && rm -rf /var/cache/apk/*
       - python -m pip install nox
       - python -m pip install poetry
-      - nox --session "docs_production"
+      - nox --session docs_production
     when:
       branch: master
 branches: [master, develop]
