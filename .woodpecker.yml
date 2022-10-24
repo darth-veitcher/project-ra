@@ -12,9 +12,9 @@ pipeline:
       - export ALIAS=`if [ ${CI_COMMIT_BRANCH} = master ]; then echo latest; else echo develop; fi`
       - export VERSION=`poetry version -s`
       # Specify git repo credentials to push back to the gh-pages branch
-      - git config credential.$(git remote get-url origin).username $${GIT_USER}
+      - git config credential.`git remote get-url origin`.username $${GIT_USER}
       - echo 'GIT_USER $${GIT_USER}}'
-      - git config credential.$(git remote get-url origin).password $${GIT_PASSWORD}
+      - git config credential.`git remote get-url origin`.password $${GIT_PASSWORD}
       - git config user.name $${GIT_USER}
       - git config user.email $${GIT_EMAIL}
       # Build and deploy
