@@ -15,17 +15,12 @@ pipeline:
       - cat .git/config
       - export REPO=`git remote get-url origin`
       - export REMOTE=`echo 'https://'$${GIT_USER}':'$${GIT_PASSWORD}'@git.jamesveitch.xyz/'$${CI_REPO}`
-      # - git config --global credential.helper store
-      # - git config --global credential.username $${GIT_USER}
-      # - git config --global credential.password $${GIT_PASSWORD}
       - git config --global user.name $${GIT_USER}
       - git config --global user.password $${GIT_PASSWORD}
       - git config --global user.email $${GIT_EMAIL}
-      # - git remote remove origin
-      # - git remote add origin $${REMOTE}
+      # overwrite the push url for the remote with the new creds
       - git remote set-url --push origin $${REMOTE}
-      - cat .git/config
       # Build and deploy
-      - poetry run mike deploy --push $${VERSION} $${ALIAS}
+      - poetry run mike deploy --ignore --push $${VERSION} $${ALIAS}
     secrets: [GIT_USER, GIT_PASSWORD, GIT_EMAIL]
 branches: [master, develop]
