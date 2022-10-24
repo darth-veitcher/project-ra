@@ -23,7 +23,7 @@ pipeline:
       - export VERSION=`poetry version -s`
       # Specify git repo credentials to push back to the gh-pages branch
       - cat .git/config
-      - git config credential.helper store
+      # - git config credential.helper store
       - git config credential.username $${GIT_USER}
       - git config credential.password $${GIT_PASSWORD}
       - git config user.name $${GIT_USER}
