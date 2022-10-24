@@ -12,13 +12,17 @@ pipeline:
       - export ALIAS=`if [ ${CI_COMMIT_BRANCH} = master ]; then echo latest; else echo develop; fi`
       - export VERSION=`poetry version -s`
       # Specify git repo credentials to push back to the gh-pages branch
+      - cat .git/config
       - export REPO=`git remote get-url origin`
-      - git config --global credential.helper store
-      - git config --global credential.username $${GIT_USER}
-      - git config --global credential.password $${GIT_PASSWORD}
-      - git config --global user.name $${GIT_USER}
-      - git config --global user.password $${GIT_PASSWORD}
-      - git config --global user.email $${GIT_EMAIL}
+      - export REMOTE=`echo 'https://$${GIT_USER}:$${GIT_PASSWORD}@git.jamesveitch.xyz'$${CI_REPO}`
+      # - git config --global credential.helper store
+      # - git config --global credential.username $${GIT_USER}
+      # - git config --global credential.password $${GIT_PASSWORD}
+      # - git config --global user.name $${GIT_USER}
+      # - git config --global user.password $${GIT_PASSWORD}
+      # - git config --global user.email $${GIT_EMAIL}
+      - git remote remove origin
+      - git remote add origin $${REMOTE}
       - cat .git/config
       # Build and deploy
       - poetry run mike deploy --push $${VERSION} $${ALIAS}
