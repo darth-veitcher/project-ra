@@ -10,6 +10,7 @@ pipeline:
       - nox --session docs
     when:
       branch: develop
+    secrets: [GIT_COMMITTER_NAME, GIT_COMMITTER_EMAIL]
   docs-prod:
     image: python:3.9-alpine
     pull: true
@@ -21,5 +22,5 @@ pipeline:
       - nox --session docs_production
     when:
       branch: master
+    secrets: [GIT_COMMITTER_NAME, GIT_COMMITTER_EMAIL]
 branches: [master, develop]
-secrets: [GIT_COMMITTER_NAME, GIT_COMMITTER_EMAIL]
