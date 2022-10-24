@@ -27,10 +27,11 @@ pipeline:
       - git config credential.username $${GIT_USER}
       - git config credential.password $${GIT_PASSWORD}
       - git config user.name $${GIT_USER}
+      - git config user.email $${GIT_EMAIL}
       - cat .git/config
       # Build and deploy
       - poetry run mike deploy --push $${VERSION} $${ALIAS}
     when:
       branch: develop
-    secrets: [GIT_USER, GIT_PASSWORD]
+    secrets: [GIT_USER, GIT_PASSWORD, GIT_EMAIL]
 branches: [master, develop]
