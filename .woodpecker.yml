@@ -21,8 +21,9 @@ pipeline:
       - git config --global user.name $${GIT_USER}
       - git config --global user.password $${GIT_PASSWORD}
       - git config --global user.email $${GIT_EMAIL}
-      - git remote remove origin
-      - git remote add origin $${REMOTE}
+      # - git remote remove origin
+      # - git remote add origin $${REMOTE}
+      - git remote set-url --push origin $${REMOTE}
       - cat .git/config
       # Build and deploy
       - poetry run mike deploy --push $${VERSION} $${ALIAS}
