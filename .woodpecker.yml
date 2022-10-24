@@ -21,13 +21,16 @@ pipeline:
       - poetry run pip install -r requirements-dev.txt
       - export ALIAS='develop'
       - export VERSION=`poetry version -s`
+      # Specify git repo credentials to push back to the gh-pages branch
       - cat .git/config
       - git config credential.helper store
-      - git config credential.username ci-bot
-      - git config user.name ci-bot
-      - git config user.email ci-bot@statemachine.ai
+      - git config credential.username $${GIT_USER}
+      - git config credential.password $${GIT_PASSWORD}
+      - git config user.name $${GIT_USER}
       - cat .git/config
+      # Build and deploy
       - poetry run mike deploy --push $${VERSION} $${ALIAS}
     when:
       branch: develop
+    secrets: [GIT_USER, GIT_PASSWORD]
 branches: [master, develop]
