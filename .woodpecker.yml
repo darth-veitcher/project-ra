@@ -25,7 +25,7 @@ pipeline:
       - git config credential.helper store
       - git config user.name ci-bot
       - git config user.email ci-bot@statemachine.ai
-      - git credential username ci-bot
+      - git credential.username ci-bot
       - cat .git/config
       - poetry run mike deploy --push $${VERSION} $${ALIAS}
     when:
