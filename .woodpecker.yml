@@ -21,6 +21,7 @@ pipeline:
       - poetry run pip install -r requirements-dev.txt
       - export ALIAS='develop'
       - export VERSION=`poetry version -s`
+      - git config credential.helper store
       - git config user.name ci-bot
       - git config user.email ci-bot@statemachine.ai
       - poetry run mike deploy --push $${VERSION} $${ALIAS}
