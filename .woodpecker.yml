@@ -14,7 +14,6 @@ pipeline:
       # Specify git repo credentials to push back to the gh-pages branch
       - cat .git/config
       - export REPO=`git remote get-url origin`
-      - git config --global --unset credentials.helper
       - git config --global credential.username $${GIT_USER}
       - git config --global credential.password $${GIT_PASSWORD}
       - git config --global user.name $${GIT_USER}
