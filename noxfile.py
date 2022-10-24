@@ -22,7 +22,7 @@ def install_with_constraints(session: Session, *args, **kwargs):
 @nox.session
 def docs(session: Session) -> None:
     """Build the documentation."""
-    session.run("poetry", "install", "--no-dev", external=True)
+    # session.run("poetry", "install", "--only", "main", external=True)
     install_with_constraints(
         session,
         "mkdocs",
@@ -37,7 +37,7 @@ def docs(session: Session) -> None:
 @nox.session
 def docs_production(session: Session) -> None:
     """Build the documentation."""
-    session.run("poetry", "install", "--no-dev", external=True)
+    # session.run("poetry", "install", "--only", "main", external=True)
     install_with_constraints(
         session,
         "mkdocs",
