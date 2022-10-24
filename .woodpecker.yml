@@ -20,6 +20,7 @@ pipeline:
       - git config --global user.email $${GIT_EMAIL}
       # overwrite the push url for the remote with the new creds
       - git remote set-url --push origin $${REMOTE}
+      - git branch --set-upstream-to=origin/$${CI_COMMIT_BRANCH} $${CI_COMMIT_BRANCH}
       - git pull
       # Build and deploy
       - poetry run mike deploy --ignore --push $${VERSION} $${ALIAS}
