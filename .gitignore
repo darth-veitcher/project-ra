@@ -12,3 +12,5 @@ venv/
 .esphome
 esphome/secrets.yaml
 site/
+.nox
+__pycache__
