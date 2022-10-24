@@ -22,3 +22,4 @@ pipeline:
     when:
       branch: master
 branches: [master, develop]
+secrets: [GIT_COMMITTER_NAME, GIT_COMMITTER_EMAIL]
