@@ -10,7 +10,8 @@ def install_with_constraints(session: Session, *args, **kwargs):
         session.run(
             "poetry",
             "export",
-            "--dev",
+            "--with",
+            "dev",
             "--without-hashes",
             "--format=requirements.txt",
             f"--output={requirements.name}",
