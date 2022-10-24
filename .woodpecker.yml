@@ -21,7 +21,6 @@ pipeline:
       # overwrite the push url for the remote with the new creds
       - git remote set-url --push origin $${REMOTE}
       - git branch --set-upstream-to=origin/$${CI_COMMIT_BRANCH} master
-      - git pull
       # Build and deploy
       - poetry run mike deploy --rebase --push $${VERSION} $${ALIAS}
     secrets: [GIT_USER, GIT_PASSWORD, GIT_EMAIL]
