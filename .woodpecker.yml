@@ -7,10 +7,10 @@ pipeline:
         apk add --no-cache git bash build-base libffi-dev openssl-dev bzip2-dev zlib-dev readline-dev sqlite-dev curl && rm -rf /var/cache/apk/*
       - python -m pip install nox
       - python -m pip install poetry
+      - export GIT_COMMITTER_NAME=ci-bot && export GIT_COMMITTER_EMAIL=ci-bot@statemachine.ai
       - nox --session docs
     when:
       branch: develop
-    secrets: [GIT_COMMITTER_NAME, GIT_COMMITTER_EMAIL]
   docs-prod:
     image: python:3.9-alpine
     pull: true
@@ -19,8 +19,8 @@ pipeline:
         apk add --no-cache git bash build-base libffi-dev openssl-dev bzip2-dev zlib-dev readline-dev sqlite-dev curl && rm -rf /var/cache/apk/*
       - python -m pip install nox
       - python -m pip install poetry
+      - export GIT_COMMITTER_NAME=ci-bot && export GIT_COMMITTER_EMAIL=ci-bot@statemachine.ai
       - nox --session docs_production
     when:
       branch: master
-    secrets: [GIT_COMMITTER_NAME, GIT_COMMITTER_EMAIL]
 branches: [master, develop]
