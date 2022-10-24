@@ -45,17 +45,6 @@ test = ["coverage[toml] (>=4.5)", "hypothesis (>=4.0)", "pytest (>=7.0)", "pytes
 trio = ["trio (>=0.16,<0.22)"]
 
 [[package]]
-name = "argcomplete"
-version = "2.0.0"
-description = "Bash tab completion for argparse"
-category = "dev"
-optional = false
-python-versions = ">=3.6"
-
-[package.extras]
-test = ["wheel", "pexpect", "flake8", "coverage"]
-
-[[package]]
 name = "asgiref"
 version = "3.5.2"
 description = "ASGI specs, helper code, and adapters"
@@ -140,20 +129,6 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [[package]]
-name = "colorlog"
-version = "6.7.0"
-description = "Add colours to the output of Python's logging module."
-category = "dev"
-optional = false
-python-versions = ">=3.6"
-
-[package.dependencies]
-colorama = {version = "*", markers = "sys_platform == \"win32\""}
-
-[package.extras]
-development = ["black", "flake8", "mypy", "pytest", "types-colorama"]
-
-[[package]]
 name = "cryptography"
 version = "38.0.2"
 description = "cryptography is a package which provides cryptographic recipes and primitives to Python developers."
@@ -176,14 +151,6 @@ test = ["pytest (>=6.2.0)", "pytest-benchmark", "pytest-cov", "pytest-subtests",
 name = "csscompressor"
 version = "0.9.5"
 description = "A python port of YUI CSS Compressor"
-category = "dev"
-optional = false
-python-versions = "*"
-
-[[package]]
-name = "distlib"
-version = "0.3.6"
-description = "Distribution utilities"
 category = "dev"
 optional = false
 python-versions = "*"
@@ -253,18 +220,6 @@ reedsolo = ">=1.5.3,<=1.5.4"
 
 [package.extras]
 dev = ["flake8 (>=3.2.0)", "flake8-future-import", "flake8-import-order", "pyelftools", "unittest-xml-reporting (<=2.5.2)", "coverage"]
-
-[[package]]
-name = "filelock"
-version = "3.8.0"
-description = "A platform independent file lock."
-category = "dev"
-optional = false
-python-versions = ">=3.7"
-
-[package.extras]
-docs = ["furo (>=2022.6.21)", "sphinx (>=5.1.1)", "sphinx-autodoc-typehints (>=1.19.1)"]
-testing = ["covdefaults (>=2.2)", "coverage (>=6.4.2)", "pytest (>=7.1.2)", "pytest-cov (>=3)", "pytest-timeout (>=2.1)"]
 
 [[package]]
 name = "ghp-import"
@@ -499,24 +454,6 @@ python-versions = "~=3.5"
 cryptography = ">=2.8"
 
 [[package]]
-name = "nox"
-version = "2022.8.7"
-description = "Flexible test automation."
-category = "dev"
-optional = false
-python-versions = ">=3.7"
-
-[package.dependencies]
-argcomplete = ">=1.9.4,<3.0"
-colorlog = ">=2.6.1,<7.0.0"
-packaging = ">=20.9"
-py = ">=1.4,<2.0.0"
-virtualenv = ">=14"
-
-[package.extras]
-tox_to_nox = ["jinja2", "tox"]
-
-[[package]]
 name = "packaging"
 version = "21.3"
 description = "Core utilities for Python packages"
@@ -537,18 +474,6 @@ python-versions = "*"
 
 [package.extras]
 proxy = ["pysocks"]
-
-[[package]]
-name = "platformdirs"
-version = "2.5.2"
-description = "A small Python module for determining appropriate platform-specific dirs, e.g. a \"user data dir\"."
-category = "dev"
-optional = false
-python-versions = ">=3.7"
-
-[package.extras]
-docs = ["furo (>=2021.7.5b38)", "proselint (>=0.10.2)", "sphinx-autodoc-typehints (>=1.12)", "sphinx (>=4)"]
-test = ["appdirs (==1.4.4)", "pytest-cov (>=2.7)", "pytest-mock (>=3.6)", "pytest (>=6)"]
 
 [[package]]
 name = "platformio"
@@ -582,14 +507,6 @@ description = "Protocol Buffers"
 category = "main"
 optional = false
 python-versions = ">=3.7"
-
-[[package]]
-name = "py"
-version = "1.11.0"
-description = "library with cross-python path, ini-parsing, io, code, log facilities"
-category = "dev"
-optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [[package]]
 name = "pycparser"
@@ -868,23 +785,6 @@ python-versions = "*"
 test = ["pytest", "pretend", "mypy", "flake8 (>=3.7)", "coverage"]
 
 [[package]]
-name = "virtualenv"
-version = "20.16.5"
-description = "Virtual Python Environment builder"
-category = "dev"
-optional = false
-python-versions = ">=3.6"
-
-[package.dependencies]
-distlib = ">=0.3.5,<1"
-filelock = ">=3.4.1,<4"
-platformdirs = ">=2.4,<3"
-
-[package.extras]
-docs = ["proselint (>=0.13)", "sphinx (>=5.1.1)", "sphinx-argparse (>=0.3.1)", "sphinx-rtd-theme (>=1)", "towncrier (>=21.9)"]
-testing = ["coverage (>=6.2)", "coverage-enable-subprocess (>=1)", "flaky (>=3.7)", "packaging (>=21.3)", "pytest (>=7.0.1)", "pytest-env (>=0.6.2)", "pytest-freezegun (>=0.4.2)", "pytest-mock (>=3.6.1)", "pytest-randomly (>=3.10.3)", "pytest-timeout (>=2.1)"]
-
-[[package]]
 name = "voluptuous"
 version = "0.13.1"
 description = ""
@@ -941,14 +841,13 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "flake8 
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "7abdafa8a37a65471157388b2c86f3e18f6be146303d5367068f4e64b8692d3f"
+content-hash = "3fe1a75e3d0cd4aba8c5341e011b9d55735c75a841f45df6fd27b2acf7cb79cf"
 
 [metadata.files]
 aioesphomeapi = []
 aiofiles = []
 ajsonrpc = []
 anyio = []
-argcomplete = []
 asgiref = []
 async-timeout = []
 bitstring = []
@@ -961,17 +860,14 @@ click = [
     {file = "click-8.1.3.tar.gz", hash = "sha256:7682dc8afb30297001674575ea00d1814d808d6a36af415a82bd481d37ba7b8e"},
 ]
 colorama = []
-colorlog = []
 cryptography = []
 csscompressor = [
     {file = "csscompressor-0.9.5.tar.gz", hash = "sha256:afa22badbcf3120a4f392e4d22f9fff485c044a1feda4a950ecc5eba9dd31a05"},
 ]
-distlib = []
 ecdsa = []
 esphome = []
 esphome-dashboard = []
 esptool = []
-filelock = []
 ghp-import = []
 h11 = []
 htmlmin = [
@@ -1042,22 +938,13 @@ mkdocs-material = []
 mkdocs-material-extensions = []
 mkdocs-minify-plugin = []
 noiseprotocol = []
-nox = []
 packaging = [
     {file = "packaging-21.3-py3-none-any.whl", hash = "sha256:ef103e05f519cdc783ae24ea4e2e0f508a9c99b2d4969652eed6a2e1ea5bd522"},
     {file = "packaging-21.3.tar.gz", hash = "sha256:dd47c42927d89ab911e606518907cc2d3a1f38bbd026385970643f9c5b8ecfeb"},
 ]
 paho-mqtt = []
-platformdirs = [
-    {file = "platformdirs-2.5.2-py3-none-any.whl", hash = "sha256:027d8e83a2d7de06bbac4e5ef7e023c02b863d7ea5d079477e722bb41ab25788"},
-    {file = "platformdirs-2.5.2.tar.gz", hash = "sha256:58c8abb07dcb441e6ee4b11d8df0ac856038f944ab98b7be6b27b2a3c7feef19"},
-]
 platformio = []
 protobuf = []
-py = [
-    {file = "py-1.11.0-py2.py3-none-any.whl", hash = "sha256:607c53218732647dff4acdfcd50cb62615cedf612e72d1724fb1a0cc6405b378"},
-    {file = "py-1.11.0.tar.gz", hash = "sha256:51c75c4126074b472f746a24399ad32f6053d1b34b68d2fa41e558e6f4a98719"},
-]
 pycparser = [
     {file = "pycparser-2.21-py2.py3-none-any.whl", hash = "sha256:8ee45429555515e1f6b185e78100aea234072576aa43ab53aefcae078162fca9"},
     {file = "pycparser-2.21.tar.gz", hash = "sha256:e644fdec12f7872f86c58ff790da456218b10f863970249516d60a5eaca77206"},
@@ -1177,7 +1064,6 @@ uvicorn = [
     {file = "uvicorn-0.17.6.tar.gz", hash = "sha256:5180f9d059611747d841a4a4c4ab675edf54c8489e97f96d0583ee90ac3bfc23"},
 ]
 verspec = []
-virtualenv = []
 voluptuous = []
 watchdog = []
 wsproto = []

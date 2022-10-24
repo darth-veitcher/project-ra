@@ -9,5 +9,5 @@ pipeline:
       - poetry run pip install -r requirements-dev.txt
       - git config --global user.name=ci-bot && git config --global user.email=ci-bot@statemachine.ai
       - if [ ${CI_COMMIT_TARGET_BRANCH} = 'master' ]; then export ALIAS='latest'; else export ALIAS=${CI_COMMIT_TARGET_BRANCH}; fi
-      - VERSION=$$(poetry version -s); mike deploy $${VERSION} $${ALIAS} || mike deploy --push --update-aliases $${VERSION} $${ALIAS}
+      - VERSION=$$(poetry version -s); poetry run mike deploy $${VERSION} $${ALIAS} || poetry run mike deploy --push --update-aliases $${VERSION} $${ALIAS}
 branches: [master, develop]
