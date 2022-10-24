@@ -1,0 +1,5 @@
+# ESPHome for ESP based devices such as Sonoff
+esphome==2022.10.0; python_full_version >= "3.9.0"
+
+# Modbus support for Victron kit
+pymodbus==3.0.0; python_full_version >= "3.8.0"

@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "project-ra"
+version = "0.1.0"
+description = ""
+authors = ["Darth Veitcher <darth-veitcher@statemachine.ai>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+esphome = "^2022.10.0"
+pymodbus = "^3.0.0"
+
+[tool.poetry.dev-dependencies]
+mkdocs = "^1.4.1"
+mkdocs-material = "^8.5.7"
+pymdown-extensions = "^9.7"
+mkdocs-minify-plugin = "^0.6.0"
+mike = "^1.1.2"
+nox = "^2022.8.7"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

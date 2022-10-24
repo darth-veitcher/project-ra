@@ -1,14 +1,8 @@
-# Project Ra
-
-This repository is designed to document my approach to setting up a basic Home Assistant installation with a connection to Victron Energy devices (solar mppt charge controller, battery smartshunt, inverter etc.)
-
-Many of the settings will require changing for your local configuration so please read the documentation before attempting to blindly run a `docker compose up -d`.
-
-## Victron Energy
+# Victron Energy
 
 This section describes how to add Victron Energy devices into Home Assistant.
 
-### Enable Modbus TCP
+## Enable Modbus TCP
 
 Go to the `remote console` for the Cerbo GX device and ensure Modbus is enabled (it's disabled by default).
 
@@ -39,9 +33,9 @@ com.victronenergy.vebus: 227
 com.victronenergy.solarcharger: 100
 ```
 
-### Modbus Device Basic Concepts
+## Modbus Device Basic Concepts
 
-#### Reading Values
+### Reading Values
 
 This is explained in far more detail elsewhere, including in the [Victron Energy: GC Modbus-TCP Manual](https://www.victronenergy.com/live/ccgx:modbustcp_faq), but in order to effectively utilise modbus devices we need to know both the `Unit ID` of the physical hardware and then the associated `register address` for the sensor/switch that we'd like to read/write. Whilst you can find the `Unit ID` above, the specifics for the `registers` have to be found from the manufacturers specification. In the instance of Victron they publish theirs in an Excel file that you need to download from their website. The version I am using is `CCGX-Modbus-TCP-register-list-2.90` which can be found [here](https://www.victronenergy.com/support-and-downloads/technical-information). It'll contain information similar to the below.
 
@@ -81,7 +75,7 @@ print(response.registers[0])  # first item in the register
 client.close()
 ```
 
-#### Writing Values
+### Writing Values
 
 In order to control modbus devices we can write to them. As we saw from the above table however all of the services in question had `no` in the `writable` column. We'll instead attempt to toggle the inverter on and off. This was on the `vebus` connection and the service in question we want is the `Switch Position`
 
@@ -107,7 +101,7 @@ client.write_registers(33, 4, slave=227)
 client.close()
 ```
 
-### Home Assistant
+## Home Assistant
 
 In order to integrate our above ModbusTCP understanding into Home Assistant we need to perform a few steps:
 
@@ -115,15 +109,12 @@ In order to integrate our above ModbusTCP understanding into Home Assistant we n
 2. Provide this extension with a list of available services and how to interpret them - inside the `modbus.yaml`; and
 3. Explain how to translate the returned enums into human readable responses - inside the `sensor/modbus_sensor.yaml` file.
 
-#### Modbus extension: `configuration.yaml`
+### Modbus extension: `configuration.yaml`
 
 Home Assistant comes with an inbuilt extension to support the Modbus protocol. Full documentation can be found [here](https://www.home-assistant.io/integrations/modbus). The extension needs to be enabled within the `configuration.yaml` file however as opposed to being added via the UI.
 
-```yaml
-# file: configuration.yaml
-modbus: !include modbus.yaml
-# Includes all Templates / Sensors in folder sensor
-sensor: !include_dir_merge_list sensor/
+```yaml title="configuration.yaml"
+--8<-- "home-assistant/configuration.yaml:21:24"
 ```
 
 We're going to follow a separation of concerns and keep our modbus service configuration in a separate file called `modbus.yaml`. Our templates (for displaying enums) will be within a dedicated `sensor/sensor_modbus.yaml` file. The folder structure will therefore look as follows:
@@ -137,68 +128,27 @@ config
     └── sensor_modbus.yaml
 ```
 
-#### Services: `modbus.yaml`
+### Services: `modbus.yaml`
 
 The `modbus.yaml` file configures the extension with the known endpoints for our Cerbo GX, the connected devices, and their capabilities (published as services). An example is given below, simply add additional entries into the `sensors` section the mapping of yaml to the spreadsheet above should be fairly obvious, with the exception of the `scale` (needs to be `1 / [scalefactor]`) and `precision` (how accurate the value is in decimal places).
 
-```yaml
-- name: "victron"
-  type: tcp
-  delay: 5
-  timeout: 5
-  host: !secret cerbo_ip
-  port: 502
-  sensors:
-    - name: "Battery Voltage (System)"
-      # Battery Voltage determined from different measurements. In order of preference: BMV-voltage (V), Multi-DC-Voltage (CV), MPPT-DC-Voltage (ScV), Charger voltage
-      scan_interval: 10
-      address: 840
-      slave: !secret com.victronenergy.system
-      data_type: uint16
-      unit_of_measurement: "V DC"
-      device_class: voltage
-      scale: 0.1
-      precision: 1
+```yaml title="modbus.yaml"
+--8<-- "home-assistant/modbus.yaml:9:245"
 ```
 
-#### Templates: `sensor/sensor_modbus.yaml`
+### Templates: `sensor/sensor_modbus.yaml`
 
 This has to be done in hideous yaml unfortunately using jinja2 syntax... We use `if` `then` `else` type flows in order to return the correct human readable representation of the enum.
 
 **NB:** Note how we are referencing `battery_state_system` as the root sensor. Home Assistant will automatically escape the human readable "Battery state (System)" description given to it in our `modbus.yaml` file originally.
 
-```yaml
-- platform: template
-  sensors:
-    battery_state_system_friendly:
-      friendly_name: "Battery State (System)"
-      # 0=idle;1=charging;2=discharging
-      value_template: >-
-        {% if (states('sensor.battery_state_system') | int(default=0) == 0) %}
-          Idle
-        {% elif (states('sensor.battery_state_system') | int(default=0) == 1) %}
-          Charging
-        {% elif (states('sensor.battery_state_system') | int(default=0) == 2) %}
-          Discharging
-        {% else %}
-          ERROR
-        {% endif %}
+```yaml title="sensor/sensor_modbus.yaml"
+--8<-- "home-assistant/sensor/sensor_modbus.yaml"
 ```
 
 You should now be able to create a card within Home Assistant that contains the details and history for the system battery.
 
 ![basic ui card](assets/example-lovelace-card-read-battery.png)
-
-## Home Assistant Community Store (HACS)
-
-To use [HACS](https://hacs.xyz) in the container we need to exec into it and run a command, then restart the service.
-
-```zsh
-# on host
-docker exec -it hass bash -c 'wget -O - https://get.hacs.xyz | bash -'
-```
-
-After restarting the service you need to refresh / logout to ensure the cache is cleared for the integrations **otherwise HACS won't display.** Then go into integrations and search for HACS to install.
 
 ## Sources
 

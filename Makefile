@@ -1,4 +1,4 @@
-.PHONY: dev
+.PHONY: dev docs-dev docs-prod
 
 dev:
 	docker-compose stop && docker-compose rm -f
@@ -6,3 +6,13 @@ dev:
 	mkdir -p data/mariadb
 	cp -R home-assistant data/
 	docker-compose up --build
+
+# Deploys based on the `version` inside the pyproject.toml only
+# NB: need to double escape `$` signs for bash variables in makefile
+docs-dev:
+	- VERSION=$$(poetry version -s); mike deploy $${VERSION}
+	VERSION=$$(poetry version -s); mike deploy --push --update-aliases $${VERSION}
+
+# Deploys based on both the version and labels current as `latest`
+docs-prod:
+	VERSION=$$(poetry version -s); mike deploy --push --update-aliases $${VERSION} latest
