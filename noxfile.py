@@ -2,6 +2,7 @@
 import tempfile
 import nox  # noqa: I003
 from nox import Session
+from os import environ
 
 
 def install_with_constraints(session: Session, *args, **kwargs):
@@ -20,6 +21,13 @@ def install_with_constraints(session: Session, *args, **kwargs):
         session.install(f"--constraint={requirements.name}", *args, **kwargs)
 
 
+def set_global_git_credentials(session: Session):
+    username = environ.get("GIT_COMMITTER_NAME", "ci-bot")
+    useremail = environ.get("GIT_COMMITTER_EMAIL", "ci-bot@statemachine.ai")
+    session.run("git", "config", "--global", "user.name", username)
+    session.run("git", "config", "--global", "user.email", useremail)
+
+
 @nox.session
 def docs(session: Session) -> None:
     """Build the documentation."""
@@ -32,6 +40,7 @@ def docs(session: Session) -> None:
         "pymdown-extensions",
         "mike",
     )
+    set_global_git_credentials(session)
     session.run("make", "docs-dev", external=True)
 
 
@@ -47,4 +56,5 @@ def docs_production(session: Session) -> None:
         "pymdown-extensions",
         "mike",
     )
+    set_global_git_credentials(session)
     session.run("make", "docs-prod", external=True)
