@@ -24,8 +24,8 @@ def install_with_constraints(session: Session, *args, **kwargs):
 def set_global_git_credentials(session: Session):
     username = environ.get("GIT_COMMITTER_NAME", "ci-bot")
     useremail = environ.get("GIT_COMMITTER_EMAIL", "ci-bot@statemachine.ai")
-    session.run("git", "config", "--global", "user.name", username)
-    session.run("git", "config", "--global", "user.email", useremail)
+    session.run("git", "config", "--local", "user.name", username)
+    session.run("git", "config", "--local", "user.email", useremail)
 
 
 @nox.session
