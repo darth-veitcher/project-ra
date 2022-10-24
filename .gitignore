@@ -10,5 +10,5 @@ data/
 env/
 venv/
 .esphome
-
 esphome/secrets.yaml
+site/

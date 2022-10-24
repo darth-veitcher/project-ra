@@ -1,0 +1,105 @@
+# Project information
+site_name: Project Ra
+site_description: "Home automation with the power of the sun"
+copyright: Copyright &copy; Darth Veitcher
+
+# Nav
+nav:
+  - "Project Ra": "index.md"
+  - "Getting Started":
+      - "Pre Reqs": "getting-started/pre-reqs.md"
+      - "Victron Energy": "victron.md"
+  - "Roadmap": "todo.md"
+
+# Repository
+repo_name: "darth-veitcher/project-ra"
+repo_url: "https://github.com/darth-veitcher/project-ra"
+
+# Use the Material theme config
+# https://squidfunk.github.io/mkdocs-material/getting-started/
+extra:
+  generator: false
+theme:
+  name: "material"
+  custom_dir: "docs/theme"
+  icon:
+    logo: "material/brightness-7"
+  hide:
+    - footer
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: orange
+      accent: orange
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: orange
+      accent: orange
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.top
+  font:
+    # text: 'Abel'  # Ubuntu
+    code: "Hackman" # Ubuntu Mono
+
+# Markdown and Extensions
+# https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown
+# https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown-extensions
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+      baselevel: 3
+  - tables
+  # Python Markdown Extensions
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight:
+      auto_title: true
+      anchor_linenums: true
+      linenums_style: table
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      base_path: ["."]
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+      clickable_checkbox: true
+plugins:
+  - search
+  - minify:
+      minify_html: true
+  - mike:
+      canonical_version: latest
+      version_selector: true
+      css_dir: css
+      javascript_dir: js

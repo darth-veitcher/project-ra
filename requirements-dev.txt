@@ -4,3 +4,5 @@ mkdocs-material==8.5.7; python_version >= "3.7"
 mkdocs-minify-plugin==0.6.0; python_version >= "3.7"
 # Code syntax highlighting support
 pymdown-extensions==9.7; python_version >= "3.7"
+# Mike for version control of docs
+mike==1.1.2
