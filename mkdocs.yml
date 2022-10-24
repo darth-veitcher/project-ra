@@ -8,7 +8,7 @@ nav:
   - "Project Ra": "index.md"
   - "Getting Started":
       - "Pre Reqs": "getting-started/pre-reqs.md"
-      - "Victron Energy": "victron.md"
+      - "Victron Energy": "home-assistant/victron.md"
   - "Roadmap": "todo.md"
 
 # Repository
