@@ -12,7 +12,6 @@ pipeline:
       - export ALIAS=`if [ ${CI_COMMIT_BRANCH} = master ]; then echo latest; else echo develop; fi`
       - export VERSION=`poetry version -s`
       # Specify git repo credentials to push back to the gh-pages branch
-      - cat .git/config
       - export REPO=`git remote get-url origin`
       - export REMOTE=`echo 'https://'$${GIT_USER}':'$${GIT_PASSWORD}'@git.jamesveitch.xyz/'$${CI_REPO}`
       - git config --global user.name $${GIT_USER}
