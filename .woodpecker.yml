@@ -21,9 +21,7 @@ pipeline:
       - poetry run pip install -r requirements-dev.txt
       - export ALIAS='develop'
       - export VERSION=`poetry version -s`
-      - export GIT_COMMITTER_NAME=ci-bot
-      - export GIT_COMMITTER_EMAIL=ci-bot@statemachine.ai
-      - poetry run mike deploy $${VERSION} $${ALIAS} || poetry run mike deploy --push --update-aliases $${VERSION} $${ALIAS}
+      - GIT_COMMITTER_NAME=ci-bot GIT_COMMITTER_EMAIL=ci-bot@statemachine.ai poetry run mike deploy $${VERSION} $${ALIAS} || GIT_COMMITTER_NAME=ci-bot GIT_COMMITTER_EMAIL=ci-bot@statemachine.ai poetry run mike deploy --push --update-aliases $${VERSION} $${ALIAS}
     when:
       branch: develop
 branches: [master, develop]
