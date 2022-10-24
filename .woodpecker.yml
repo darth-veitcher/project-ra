@@ -1,25 +1,13 @@
 pipeline:
-  docs-dev:
+  docs:
     image: python:3.9-alpine
     pull: true
     commands:
       - apk add --no-cache --virtual .build-deps gcc musl-dev &&
         apk add --no-cache git bash build-base libffi-dev openssl-dev bzip2-dev zlib-dev readline-dev sqlite-dev curl && rm -rf /var/cache/apk/*
-      - python -m pip install nox
       - python -m pip install poetry
+      - poetry run pip install -r requirements-dev.txt
       - git config --global user.name=ci-bot && git config --global user.email=ci-bot@statemachine.ai
-      - nox --session docs
-    when:
-      branch: develop
-  docs-prod:
-    image: python:3.9-alpine
-    pull: true
-    commands:
-      - apk add --no-cache --virtual .build-deps gcc musl-dev &&
-        apk add --no-cache git bash build-base libffi-dev openssl-dev bzip2-dev zlib-dev readline-dev sqlite-dev curl && rm -rf /var/cache/apk/*
-      - python -m pip install nox
-      - python -m pip install poetry
-      - nox --session docs_production
-    when:
-      branch: master
+      - if [ ${CI_COMMIT_TARGET_BRANCH} = 'master' ]; then export ALIAS='latest'; else export ALIAS=${CI_COMMIT_TARGET_BRANCH}; fi
+      - VERSION=$$(poetry version -s); mike deploy $${VERSION} $${ALIAS} || mike deploy --push --update-aliases $${VERSION} $${ALIAS}
 branches: [master, develop]
