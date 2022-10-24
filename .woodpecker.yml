@@ -22,12 +22,10 @@ pipeline:
       - export ALIAS='develop'
       - export VERSION=`poetry version -s`
       # Specify git repo credentials to push back to the gh-pages branch
-      - cat .git/config
       - git config credential.$(git remote get-url origin).username $${GIT_USER}
       - git config credential.$(git remote get-url origin).password $${GIT_PASSWORD}
       - git config user.name $${GIT_USER}
       - git config user.email $${GIT_EMAIL}
-      - cat .git/config
       # Build and deploy
       - poetry run mike deploy --push $${VERSION} $${ALIAS}
     when:
