@@ -6,6 +6,7 @@ copyright: Copyright &copy; Darth Veitcher
 # Nav
 nav:
   - "Project Ra": "index.md"
+  - "Lessons Learned": "lessons-learned.md"
   - "Getting Started":
       - "Pre Reqs": "getting-started/pre-reqs.md"
       - "Victron Energy": "home-assistant/victron.md"
