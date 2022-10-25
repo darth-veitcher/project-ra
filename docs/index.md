@@ -26,7 +26,7 @@ For details on what's included in the documentation and planned in the future re
 
 The documentation is structured into a few sections:
 
-1. **Lessons Learned:** let's do this upfront... key things I've learned, mistakes made, and what I'd do differently next time.
+1. [Lessons Learned](lessons-learned.md): let's do this upfront... key things I've learned, mistakes made, and what I'd do differently next time.
 2. **Getting Started:** what you're going to need to attempt the same as me
 3. **System Overview:** high level design and decisions for the system
 4. **Home Assistant:** the brains of the operation

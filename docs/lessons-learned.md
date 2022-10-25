@@ -2,7 +2,9 @@ Some of the things that I've learned along the way that are worth referencing up
 
 ## Grid connecting power requires specialist kit
 
-As detailed in the [system overview]() section later on to begin with I've gone with Victron Energy kit wherever possible and have utilised eBay heavily for second hand components to keep costs down. I therefore ended up with a [Phoenix Inverter](https://www.victronenergy.com/inverters/phoenix-inverter-compact) which is designed for 100% off-grid living and comfortably handles 1,000W of AC output.
+<!--TODO: update link for system overview when available -->
+
+As detailed in the [system overview]() section I've gone with Victron Energy kit wherever possible and have utilised eBay heavily for second hand components to keep costs down. I therefore ended up with a [Phoenix Inverter](https://www.victronenergy.com/inverters/phoenix-inverter-compact) which is designed for 100% off-grid living and comfortably handles 1,000W of AC output.
 
 What it doesn't do however is handle grid connections. If, for example, I wanted to output power into the house (or augment low power from the PV panels with grid energy) this would be physically impossible. You need to have both AC power sources (grid and inverter) synchronise their waveforms otherwise they fight each other and simply wont work. You'll only be able to power a circuit with a single source, so pick the right one.
 
@@ -36,3 +38,4 @@ I have a relatively simple 800W electric radiator which was previously set to ke
 Bear this in mind. It's easier to put on another layer, have a blanket etc. than attempt to heat an entire space if you don't need to. I'd rather save the power for something else 9 times out of 10.
 
 ![radiator spike](assets/radiator-spike.png)
+<small>source: Victron Energy VRM portal</small>
