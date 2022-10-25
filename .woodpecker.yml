@@ -20,7 +20,8 @@ pipeline:
       # overwrite the push url for the remote with the new creds
       - git remote add pages $${REMOTE}
       - git branch --set-upstream-to=origin/$${CI_COMMIT_BRANCH} master
-      - git pull
+      - git checkout gh-pages && git pull
+      - git checkout master
       # Build and deploy as ci-bot user and forcing use of new `pages` remote
       - poetry run mike deploy --remote pages --push --update-aliases $${VERSION} $${ALIAS}
     secrets: [GIT_USER, GIT_PASSWORD, GIT_EMAIL]
