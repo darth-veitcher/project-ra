@@ -8,8 +8,15 @@ The below is a (non-exhaustive) list of what I'm planning to add over time to th
 
 Core:
 
-- [ ] Pre-reqs for using this repository
-- [ ] Repository orientation
+- [x] Repository orientation
+
+Documentation:
+
+- [ ] Lessons Learned
+- [ ] Getting Started
+- [ ] System Overview
+- [ ] Home Assistant
+- [ ] Victron Energy
 
 Additional HA Integrations:
 
@@ -22,8 +29,3 @@ Additional HA Integrations:
 - [ ] Node Red (advanced automation)
 
 <!-- --8<-- [end:planned] -->
-
-## Done
-
-- [x] Get started ...
-- [x] Professionalise notes into documentation with MkDocs

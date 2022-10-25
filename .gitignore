@@ -9,6 +9,7 @@ Pipfile.lock
 data/
 env/
 venv/
+.venv
 .esphome
 esphome/secrets.yaml
 site/
