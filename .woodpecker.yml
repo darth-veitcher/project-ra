@@ -21,7 +21,7 @@ pipeline:
       - git remote add pages $${REMOTE}
       - git branch --set-upstream-to=origin/$${CI_COMMIT_BRANCH} master
       - git pull
-      # Build and deploy as ci-bot user
-      - poetry run mike deploy --remote pages --rebase --push --update-aliases $${VERSION} $${ALIAS}
+      # Build and deploy as ci-bot user and forcing use of new `pages` remote
+      - poetry run mike deploy --remote pages --push --update-aliases $${VERSION} $${ALIAS}
     secrets: [GIT_USER, GIT_PASSWORD, GIT_EMAIL]
 branches: [master, develop]
