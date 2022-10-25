@@ -10,7 +10,7 @@ Settings >> Services >> Modbus TCP >> Select `Enabled`
 
 Next click into the `Available services` section of this menu and you should see a list of entries with familiar looking descriptions to your victron devices such as `SmartShunt` and associated `Unit ID` values (which we will require for identifying them later on).
 
-![remote console](assets/remote-console-modbus-services.png)
+![remote console](../assets/remote-console-modbus-services.png)
 
 In my setup I have the following:
 **Note: This is likely where your setup will have different values.**
@@ -39,7 +39,7 @@ com.victronenergy.solarcharger: 100
 
 This is explained in far more detail elsewhere, including in the [Victron Energy: GC Modbus-TCP Manual](https://www.victronenergy.com/live/ccgx:modbustcp_faq), but in order to effectively utilise modbus devices we need to know both the `Unit ID` of the physical hardware and then the associated `register address` for the sensor/switch that we'd like to read/write. Whilst you can find the `Unit ID` above, the specifics for the `registers` have to be found from the manufacturers specification. In the instance of Victron they publish theirs in an Excel file that you need to download from their website. The version I am using is `CCGX-Modbus-TCP-register-list-2.90` which can be found [here](https://www.victronenergy.com/support-and-downloads/technical-information). It'll contain information similar to the below.
 
-![modbus fieldlist](assets/modbus-field-list.png)
+![modbus fieldlist](../assets/modbus-field-list.png)
 
 | dbus-service-name        | description                        | Address | Type   | Scalefactor | Range             | dbus-obj-path                | writable | dbus-unit                       |
 | ------------------------ | ---------------------------------- | ------- | ------ | ----------- | ----------------- | ---------------------------- | -------- | ------------------------------- |
@@ -148,7 +148,7 @@ This has to be done in hideous yaml unfortunately using jinja2 syntax... We use 
 
 You should now be able to create a card within Home Assistant that contains the details and history for the system battery.
 
-![basic ui card](assets/example-lovelace-card-read-battery.png)
+![basic ui card](../assets/example-lovelace-card-read-battery.png)
 
 ## Sources
 
