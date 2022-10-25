@@ -18,10 +18,10 @@ pipeline:
       - git config --global user.password $${GIT_PASSWORD}
       - git config --global user.email $${GIT_EMAIL}
       # overwrite the push url for the remote with the new creds
-      - git remote set-url --push origin $${REMOTE}
+      - git remote add pages $${REMOTE}
       - git branch --set-upstream-to=origin/$${CI_COMMIT_BRANCH} master
       - git pull
-      # Build and deploy
-      - poetry run mike deploy --rebase --push --update-aliases $${VERSION} $${ALIAS}
+      # Build and deploy as ci-bot user
+      - poetry run mike deploy --remote pages --rebase --push --update-aliases $${VERSION} $${ALIAS}
     secrets: [GIT_USER, GIT_PASSWORD, GIT_EMAIL]
 branches: [master, develop]
