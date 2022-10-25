@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "project-ra"
-version = "0.1.2"
+version = "0.1.3"
 description = ""
 authors = ["Darth Veitcher <darth-veitcher@statemachine.ai>"]
 

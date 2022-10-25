@@ -10,8 +10,8 @@ dev:
 # Deploys based on the `version` inside the pyproject.toml only
 # NB: need to double escape `$` signs for bash variables in makefile
 docs-dev:
-	- VERSION=$$(poetry version -s); mike deploy $${VERSION}
-	VERSION=$$(poetry version -s); mike deploy --push --update-aliases $${VERSION}
+	- VERSION=$$(poetry version -s); mike deploy $${VERSION} develop
+	VERSION=$$(poetry version -s); mike deploy --push --update-aliases $${VERSION} develop
 
 # Deploys based on both the version and labels current as `latest`
 docs-prod:

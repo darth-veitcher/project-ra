@@ -17,17 +17,10 @@ pipeline:
       - git config --global user.name $${GIT_USER}
       - git config --global user.password $${GIT_PASSWORD}
       - git config --global user.email $${GIT_EMAIL}
-      # add a new remote called pages with the new creds
-      # - git remote add pages $${REMOTE}
       # overwrite the remote with the new creds
       - git remote set-url origin $${REMOTE}
       - git branch --set-upstream-to=origin/$${CI_COMMIT_BRANCH} master
       - git fetch origin gh-pages --depth=1
-      # - git pull
-      # - git checkout gh-pages
-      # - git checkout master
-      # Build and deploy as ci-bot user and forcing use of new `pages` remote
-      # - poetry run mike deploy --remote pages --push --update-aliases $${VERSION} $${ALIAS}
       # Build and deploy as ci-bot user
       - poetry run mike deploy --push --update-aliases $${VERSION} $${ALIAS}
     secrets: [GIT_USER, GIT_PASSWORD, GIT_EMAIL]

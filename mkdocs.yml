@@ -25,8 +25,8 @@ theme:
   custom_dir: "docs/theme"
   icon:
     logo: "material/brightness-7"
-  hide:
-    - footer
+  # hide:
+  #   - footer
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
