@@ -17,9 +17,12 @@ pipeline:
       - git config --global user.name $${GIT_USER}
       - git config --global user.password $${GIT_PASSWORD}
       - git config --global user.email $${GIT_EMAIL}
-      # overwrite the push url for the remote with the new creds
-      - git remote add pages $${REMOTE}
+      # add a new remote called pages with the new creds
+      # - git remote add pages $${REMOTE}
+      # overwrite the remote with the new creds
+      - git remote set-url origin $${REMOTE}
       - git branch --set-upstream-to=origin/$${CI_COMMIT_BRANCH} master
+      - git pull
       - git checkout gh-pages && git pull
       - git checkout master
       # Build and deploy as ci-bot user and forcing use of new `pages` remote
