@@ -9,7 +9,7 @@ pipeline:
       - python -m pip install --upgrade pip poetry
       - poetry run pip install -r requirements-dev.txt
       # Determine alias tag and version number
-      - export ALIAS=`if [ ${CI_COMMIT_BRANCH} = master ]; then echo latest; else echo develop; fi`
+      - export ALIAS=`if [ ${CI_COMMIT_BRANCH} = master ]; then echo latest; else echo ${CI_COMMIT_BRANCH}; fi`
       - export VERSION=`poetry version -s`
       # Specify git repo credentials to push back to the gh-pages branch
       - export REPO=`git remote get-url origin`
