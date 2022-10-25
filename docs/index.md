@@ -5,6 +5,7 @@ hide:
 #   - toc
 ---
 
+![splash](assets/splash.jpg)
 [![status-badge](https://ci.jamesveitch.xyz/api/badges/james/project-ra/status.svg)](https://ci.jamesveitch.xyz/james/project-ra)
 
 This repository is designed to document my approach to setting up a basic Home Assistant installation with a connection to Victron Energy devices (solar mppt charge controller, battery smartshunt, inverter etc.)
