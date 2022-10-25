@@ -28,6 +28,6 @@ The documentation is structured into a few sections:
 
 1. [Lessons Learned](lessons-learned.md): let's do this upfront... key things I've learned, mistakes made, and what I'd do differently next time.
 2. **Getting Started:** what you're going to need to attempt the same as me
-3. **System Overview:** high level design and decisions for the system
+3. [System Overview](system-overview.md): high level design and decisions for the system
 4. **Home Assistant:** the brains of the operation
 5. **Victron Energy:** setup and integration of Victron solar and energy storage
