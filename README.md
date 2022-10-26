@@ -1,7 +1,7 @@
 # Project Ra
 
 [![status-badge](https://ci.jamesveitch.xyz/api/badges/james/project-ra/status.svg)](https://ci.jamesveitch.xyz/james/project-ra)
-![splash](assets/splash.jpg)
+![splash](docs/assets/splash.jpg)
 <small>Taking the Mancave off-grid</small>
 
 This repository is designed to document my approach to setting up a basic Home Assistant installation with a connection to Victron Energy devices (solar mppt charge controller, battery smartshunt, inverter etc.)
