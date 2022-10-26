@@ -10,8 +10,7 @@ data/
 env/
 venv/
 .venv
-.esphome
-esphome/secrets.yaml
 site/
 .nox
 __pycache__
+.python-version
