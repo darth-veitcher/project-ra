@@ -21,10 +21,9 @@ pipeline:
       - git remote set-url origin $${REMOTE}
       - git branch --set-upstream-to=origin/$${CI_COMMIT_BRANCH} master
       # fetch the branch to ensure we're synchronised
-      # or fail silently (if doesn't exist)
-      - git fetch origin gh-pages --depth=1 || true
+      # or fail silently (if doesn't exist and generate first docs manually)
+      - git fetch origin gh-pages --depth=1 || poetry run mike deploy --update-aliases $${VERSION} $${ALIAS}
       # Build and deploy as ci-bot user
-      - poetry run mike deploy
       - if [ $${CI_COMMIT_BRANCH} = master ]; then poetry run mike set-default stable; fi
       - poetry run mike deploy --push --update-aliases $${VERSION} $${ALIAS}
     secrets: [GIT_USER, GIT_PASSWORD, GIT_EMAIL]
