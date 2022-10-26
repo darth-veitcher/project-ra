@@ -13,6 +13,6 @@ docs-dev:
 	- VERSION=$$(poetry version -s); mike deploy $${VERSION} develop
 	VERSION=$$(poetry version -s); mike deploy --push --update-aliases $${VERSION} develop
 
-# Deploys based on both the version and labels current as `latest`
+# Deploys based on both the version and labels current as `stable`
 docs-prod:
-	VERSION=$$(poetry version -s); mike deploy --push --update-aliases $${VERSION} latest
+	VERSION=$$(poetry version -s); mike deploy --push --update-aliases $${VERSION} stable

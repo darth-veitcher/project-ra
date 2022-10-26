@@ -20,9 +20,12 @@ repo_url: "https://github.com/darth-veitcher/project-ra"
 # https://squidfunk.github.io/mkdocs-material/getting-started/
 extra:
   generator: false
+  version:
+    provider: mike
+    default: stable # used for Mike
 theme:
   name: "material"
-  custom_dir: "docs/theme"
+  custom_dir: "docs/theme/overrides"
   icon:
     logo: "material/brightness-7"
   # hide:
@@ -100,5 +103,5 @@ plugins:
   - minify:
       minify_html: true
   - mike:
-      canonical_version: latest
+      canonical_version: stable
       version_selector: true

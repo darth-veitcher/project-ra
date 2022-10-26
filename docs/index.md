@@ -2,7 +2,7 @@
 hide:
   #   - footer
   - navigation
-#   - toc
+  - toc
 ---
 
 [![status-badge](https://ci.jamesveitch.xyz/api/badges/james/project-ra/status.svg)](https://ci.jamesveitch.xyz/james/project-ra)
