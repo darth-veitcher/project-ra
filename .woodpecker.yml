@@ -20,7 +20,8 @@ pipeline:
       # overwrite the remote with the new creds
       - git remote set-url origin $${REMOTE}
       - git branch --set-upstream-to=origin/$${CI_COMMIT_BRANCH} master
-      # fetch the branch to ensure we're synchronised, fail silently (if doesn't exist)
+      # fetch the branch to ensure we're synchronised
+      # or fail silently (if doesn't exist)
       - git fetch origin gh-pages --depth=1 || true
       # Build and deploy as ci-bot user
       - poetry run mike deploy --push --update-aliases $${VERSION} $${ALIAS}
