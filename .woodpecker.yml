@@ -24,6 +24,8 @@ pipeline:
       # or fail silently (if doesn't exist)
       - git fetch origin gh-pages --depth=1 || true
       # Build and deploy as ci-bot user
+      - poetry run mike deploy
+      - if [ $${CI_COMMIT_BRANCH} = master ]; then poetry run mike set-default stable; fi
       - poetry run mike deploy --push --update-aliases $${VERSION} $${ALIAS}
     secrets: [GIT_USER, GIT_PASSWORD, GIT_EMAIL]
 branches: [master, develop]
