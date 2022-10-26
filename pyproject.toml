@@ -6,7 +6,6 @@ authors = ["Darth Veitcher <darth-veitcher@statemachine.ai>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-pymodbus = {extras = ["serial"], version = "^3.0.0"}
 
 [tool.poetry.dev-dependencies]
 mkdocs = "^1.4.1"
