@@ -1,4 +1,0 @@
-# Modbus support for Victron kit.
-# Use `pip install 'pymodbus[serial]'`
-pymodbus==3.0.0; python_full_version >= "3.8.0"
-pyserial-asyncio==0.6; python_full_version >= "3.8.0"

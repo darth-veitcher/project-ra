@@ -8,6 +8,11 @@ authors = ["Darth Veitcher <darth-veitcher@statemachine.ai>"]
 python = "^3.9"
 
 [tool.poetry.dev-dependencies]
+
+[tool.poetry.group.docs]
+optional = true
+
+[tool.poetry.group.docs.dependencies]
 mkdocs = "^1.4.1"
 mkdocs-material = "^8.5.7"
 pymdown-extensions = "^9.7"

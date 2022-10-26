@@ -1,3 +1,7 @@
+# Pip friendly requirements for the `docs` group.
+# Exported with poetry using the following command:
+#   `poetry export --with docs --without-hashes -f requirements.txt`
+
 # MkDocs Documentation
 mkdocs==1.4.1; python_version >= "3.7"
 mkdocs-material==8.5.7; python_version >= "3.7"
