@@ -21,6 +21,7 @@ In my setup I have the following:
 | SmartSolar MPPT 150/100          | solarcharger | 100 |
 | (no entry name)                  | system       | 100 |
 | Phoenix Inverter Compact 24/1600 | vebus        | 227 |
+| Skylla-i 24/80A (1+1)            | charger      | 100 |
 
 As can be seen from the above there is a generic, unnamed `com.victron.system` type device in the list with a `Unit ID` of `100`. This is the Cerbo GX device. The `IDs` have been stored inside the `secrets.yaml` configuration file as follows:
 
