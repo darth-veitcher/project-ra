@@ -9,7 +9,7 @@ Date: September 2022
 """
 import logging
 from dataclasses import dataclass
-from datetime import datetime
+from datetime import datetime, timedelta
 from os import environ
 from time import sleep
 
@@ -56,6 +56,8 @@ CHARGER_POTENTIAL_STATES: list[ChargerState] = [
     ChargerState(3, "Unavailable - Unknown"),
 ]
 
+RETRIES: int = 0
+
 
 # --- MAIN CODE
 def _find_state_by_code(code: int) -> ChargerState:
@@ -92,29 +94,57 @@ def set_charger_state(
     unit_id: int = CHARGER_SLAVE_UNIT_ID,
     address: int = CHARGER_STATE_REGISTER_ADDRESS,
     state_code: int = 1,
+    max_retries: int = 5,
 ):
+    global RETRIES
     current_state: ChargerState = get_charger_state()
     desired_state: ChargerState = _find_state_by_code(state_code)
     if current_state != desired_state:
         log.info(f"Changing charger state from {current_state} --> {desired_state}")
         with get_client() as client:
-            response = client.write_registers(
-                address, desired_state.code, slave=unit_id
-            )
-            log.debug(vars(response))
+            _ = client.write_registers(address, desired_state.code, slave=unit_id)
+        sleep(3)
         current_state: ChargerState = get_charger_state()
         if current_state != desired_state:
-            log.error("Unable to confirm state change. Retrying ...")
+            RETRIES += 1
+            if RETRIES > max_retries:
+                log.critical("Unable to change state. Max retries exceeded.")
+                return
+            log.error(
+                f"Unable to confirm state change. Retrying (attempt: {RETRIES}) ..."
+            )
             set_charger_state(unit_id, address, state_code)
     else:
         log.info(f"Charger state is already {current_state}")
 
 
-def main():
-    timenow = datetime.now().time()
+def _get_start_and_finish_datetimes(
+    start: datetime = CHARGER_START_TIME, finish: datetime = CHARGER_FINISH_TIME
+) -> tuple[datetime, datetime]:
+    now: datetime = datetime.now()
+    start: datetime = datetime(
+        now.year, now.month, now.day, CHARGER_START_TIME.hour, CHARGER_START_TIME.minute
+    )
+    finish: datetime = datetime(
+        now.year,
+        now.month,
+        now.day,
+        CHARGER_FINISH_TIME.hour,
+        CHARGER_FINISH_TIME.minute,
+    )
+    if start < finish:
+        return start, finish
+    else:
+        return start, (finish + timedelta(days=1))
 
-    while CHARGER_START_TIME <= timenow < CHARGER_FINISH_TIME:
-        timenow = datetime.now().time()
+
+def main():
+    timenow = datetime.now()
+    start, finish = _get_start_and_finish_datetimes()
+    log.info(f"Running between {start} and {finish}")
+
+    while start <= timenow < finish:
+        timenow = datetime.now()
 
         # Get battery SoC and determine whether charging required still
         battery_soc: int = get_battery_soc()
