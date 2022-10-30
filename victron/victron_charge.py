@@ -12,6 +12,7 @@ from dataclasses import dataclass
 from datetime import datetime, timedelta
 from os import environ
 from time import sleep
+from typing import List, Tuple  # needed for < 3.9 compat
 
 from pymodbus.client import ModbusTcpClient
 
@@ -48,7 +49,7 @@ class ChargerState:
     name: str
 
 
-CHARGER_POTENTIAL_STATES: list[ChargerState] = [
+CHARGER_POTENTIAL_STATES: List[ChargerState] = [
     ChargerState(0, "Off"),
     ChargerState(1, "On"),
     ChargerState(2, "Error"),
@@ -119,7 +120,7 @@ def set_charger_state(
 
 def _get_start_and_finish_datetimes(
     start: datetime = CHARGER_START_TIME, finish: datetime = CHARGER_FINISH_TIME
-) -> tuple[datetime, datetime]:
+) -> Tuple[datetime, datetime]:
     now: datetime = datetime.now()
     start: datetime = datetime(
         now.year, now.month, now.day, CHARGER_START_TIME.hour, CHARGER_START_TIME.minute
@@ -152,6 +153,9 @@ def main():
         if battery_needs_charging:
             set_charger_state(state_code=1)
         else:
+            log.info(
+                f"Battery no longer needs charging at {battery_soc}%. Disabling charger."
+            )
             set_charger_state(state_code=0)
 
         sleep(60)
