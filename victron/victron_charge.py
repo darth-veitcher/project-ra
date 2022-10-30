@@ -14,7 +14,6 @@ from os import environ
 from time import sleep
 
 from pymodbus.client import ModbusTcpClient
-from pymodbus.exceptions import ConnectionException
 
 # --- LOGGING
 format = "%(asctime)s - %(levelname)s - %(message)s"
@@ -36,10 +35,10 @@ CHARGER_STATE_REGISTER_ADDRESS: int = environ.get(
     "CHARGER_STATE_REGISTER_ADDRESS", 2317
 )
 CHARGER_START_TIME: datetime = datetime.strptime(
-    environ.get("CHARGER_START_TIME", None), "%H:%M"
+    environ.get("CHARGER_START_TIME", "00:30"), "%H:%M"
 ).time()
 CHARGER_FINISH_TIME: datetime = datetime.strptime(
-    environ.get("CHARGER_FINISH_TIME", None), "%H:%M"
+    environ.get("CHARGER_FINISH_TIME", "04:30"), "%H:%M"
 ).time()
 
 # charger state management
