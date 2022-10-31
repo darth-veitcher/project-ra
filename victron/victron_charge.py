@@ -8,19 +8,38 @@ Author: James Veitch
 Date: September 2022
 """
 import logging
+import sys
 from dataclasses import dataclass
 from datetime import datetime, timedelta
-from os import environ
+from logging.handlers import RotatingFileHandler
+from os import environ, makedirs
+from pathlib import Path
 from time import sleep
 from typing import List, Tuple  # needed for < 3.9 compat
 
 from pymodbus.client import ModbusTcpClient
 
 # --- LOGGING
-format = "%(asctime)s - %(levelname)s - %(message)s"
+format = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 logging.basicConfig(format=format)
-log = logging.getLogger(__name__)
-log.setLevel(logging.INFO)
+log = logging.getLogger(__name__ if __name__ != '__main__' else 'charger')
+LOG_LEVEL: str = environ.get("LOG_LEVEL", "INFO")
+log.setLevel(logging._nameToLevel[LOG_LEVEL])
+log.info(f"Logging started and set to ({log.level}: {logging._levelToName[log.level]})")
+LOG_FILE: str | Path = environ.get("LOG_FILE", "~/.logs/charger.log")
+try:
+    LOG_FILE = Path(LOG_FILE).expanduser()
+except Exception as e:
+    log.error(e)
+    log.critical(f"Unable to use log file of {LOG_FILE}. Terminating.")
+    sys.exit(1)
+makedirs(LOG_FILE.parent, exist_ok=True)
+fh: RotatingFileHandler = RotatingFileHandler(
+    LOG_FILE, mode="a+", maxBytes=2048, backupCount=1, encoding="utf-8"
+)
+fh.setFormatter(logging.Formatter(format))
+log.addHandler(fh)
+log.info(f"Log file can be found at {fh.baseFilename}")
 
 # --- VARIABLES
 # read from environment or commandline
