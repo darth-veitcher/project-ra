@@ -1,5 +1,11 @@
 Some of the things that I've learned along the way that are worth referencing upfront...
 
+## You'll likely need batteries, even if you're not interested in storing long term
+
+Ultimately the loads on the circuit will dictate but I found out the hard way that solar panels + charge controller alone simply couldn't compensate for the spikes for kit such as coffee machines. The pull was too great in too short a period and so the inverter turned off with "low voltage" errors.
+
+Connecting the batteries provided a stable "burst" capacity to fill in the gaps and I no longer had any issues afterwards.
+
 ## Grid connecting power requires specialist kit
 
 As detailed in the [system overview](system-overview.md) section I've gone with Victron Energy kit wherever possible and have utilised eBay heavily for second hand components to keep costs down. I therefore ended up with a [Phoenix Inverter](https://www.victronenergy.com/inverters/phoenix-inverter-compact) which is designed for 100% off-grid living and comfortably handles 1,000W of AC output.
