@@ -43,3 +43,7 @@ Bear this in mind. It's easier to put on another layer, have a blanket etc. than
 
 ![radiator spike](assets/radiator-spike.png)
 <small>source: Victron Energy VRM portal</small>
+
+## You'll probably want the Cerbo GX on Ethernet
+
+Because when you turn off the inverter or disconnect AC loads for any reason the WiFi Access Point will disappear and you won't be able to connect to turn it back on ...!
