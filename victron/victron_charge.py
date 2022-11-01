@@ -22,11 +22,11 @@ from pymodbus.client import ModbusTcpClient
 # --- LOGGING
 format = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 logging.basicConfig(format=format)
-log = logging.getLogger(__name__ if __name__ != '__main__' else 'charger')
+log = logging.getLogger(__name__ if __name__ != "__main__" else "charger")
 LOG_LEVEL: str = environ.get("LOG_LEVEL", "INFO")
 log.setLevel(logging._nameToLevel[LOG_LEVEL])
 log.info(f"Logging started and set to ({log.level}: {logging._levelToName[log.level]})")
-LOG_FILE: str | Path = environ.get("LOG_FILE", "~/.logs/charger.log")
+LOG_FILE: str = environ.get("LOG_FILE", "~/.logs/charger.log")
 try:
     LOG_FILE = Path(LOG_FILE).expanduser()
 except Exception as e:
