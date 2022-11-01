@@ -42,7 +42,7 @@ I have a relatively simple 800W electric radiator which was previously set to ke
 Bear this in mind. It's easier to put on another layer, have a blanket etc. than attempt to heat an entire space if you don't need to. I'd rather save the power for something else 9 times out of 10.
 
 ![radiator spike](assets/radiator-spike.png)
-<small>source: Victron Energy VRM portal</small>
+<br><small>source: Victron Energy VRM portal</small>
 
 ## You'll probably want the Cerbo GX on Ethernet
 
@@ -53,3 +53,4 @@ Because when you turn off the inverter or disconnect AC loads for any reason the
 If you aren't going to use the voltage sensors (like me) because you're going to control the device in another way / use as a direct power supply make sure you pass a small wire between the two terminals in order to short it. Otherwise it'll simply not start - lost a day of my life with this one... read the manual!
 
 ![skylla-i-shorting](assets/skylla-i-shorting.jpg)
+<br><small>Showing required cable for shorting the Skylla-i.</small>
