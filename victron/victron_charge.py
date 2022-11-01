@@ -35,7 +35,7 @@ except Exception as e:
     sys.exit(1)
 makedirs(LOG_FILE.parent, exist_ok=True)
 fh: RotatingFileHandler = RotatingFileHandler(
-    LOG_FILE, mode="a+", maxBytes=2048, backupCount=1, encoding="utf-8"
+    LOG_FILE, mode="a+", maxBytes=2048, backupCount=3, encoding="utf-8"
 )
 fh.setFormatter(logging.Formatter(format))
 log.addHandler(fh)

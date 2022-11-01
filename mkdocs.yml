@@ -6,10 +6,13 @@ copyright: Copyright &copy; Darth Veitcher
 # Nav
 nav:
   - "Project Ra": "index.md"
-  - "Lessons Learned": "lessons-learned.md"
   - "Getting Started":
       - "Pre Reqs": "getting-started/pre-reqs.md"
-      - "Victron Energy": "home-assistant/victron.md"
+  - "Lessons Learned": "lessons-learned.md"
+  - "Victron Devices (Software)":
+      - "ModbusTCP": "victron/victron.md"
+      - "Automation: Charge during off-peak": "victron/off-peak-charging.md"
+      - "Home Assistant": "victron/home-assistant.md"
   - "Roadmap": "todo.md"
 
 # Repository

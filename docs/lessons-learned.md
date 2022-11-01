@@ -1,3 +1,10 @@
+---
+hide:
+  #   - footer
+  - navigation
+  #   - toc
+---
+
 Some of the things that I've learned along the way that are worth referencing upfront...
 
 ## You'll likely need batteries, even if you're not interested in storing long term
@@ -12,13 +19,17 @@ As detailed in the [system overview](system-overview.md) section I've gone with 
 
 What it doesn't do however is handle grid connections. If, for example, I wanted to output power into the house (or augment low power from the PV panels with grid energy) this would be physically impossible. You need to have both AC power sources (grid and inverter) synchronise their waveforms otherwise they fight each other and simply wont work. You'll only be able to power a circuit with a single source, so pick the right one.
 
-![phoenix-inverter-sinewave](assets/phoenix-inverter-sinewave.png)
-<small>source: [Victron Energy: Phoenix Inverter Compact documentation](https://www.victronenergy.com/upload/documents/Datasheet-Phoenix-Inverter-1200VA-5000VA-EN.pdf)</small>
+??? info "Phoenix Inverter diagram"
+
+    ![phoenix-inverter-sinewave](assets/phoenix-inverter-sinewave.png)
+    <small>source: [Victron Energy: Phoenix Inverter Compact documentation](https://www.victronenergy.com/upload/documents/Datasheet-Phoenix-Inverter-1200VA-5000VA-EN.pdf)</small>
 
 My understanding is that kit such as the [Multiplus II](https://www.victronenergy.com/inverters-chargers/multiplus-ii) range or dedicated micro-inverters **can** handle this.
 
-![multiplus-grid](assets/multiplus-ii-grid-connection.png)
-<small>source: [Victron Energy: Multiplus II documentation](https://www.victronenergy.com/upload/documents/Datasheet-MultiPlus-II-inverter-charger-EN.pdf)</small>
+??? info "Multiplus II diagram"
+
+    ![multiplus-grid](assets/multiplus-ii-grid-connection.png)
+    <small>source: [Victron Energy: Multiplus II documentation](https://www.victronenergy.com/upload/documents/Datasheet-MultiPlus-II-inverter-charger-EN.pdf)</small>
 
 This is fine for my use case - where I'm expecting to create more energy over the 4days a week I'm not in the building than I consume in the 3days I am - but for others you may need to adjust your purchasing (or system design) accordingly.
 
@@ -52,5 +63,7 @@ Because when you turn off the inverter or disconnect AC loads for any reason the
 
 If you aren't going to use the voltage sensors (like me) because you're going to control the device in another way / use as a direct power supply make sure you pass a small wire between the two terminals in order to short it. Otherwise it'll simply not start - lost a day of my life with this one... read the manual!
 
-![skylla-i-shorting](assets/skylla-i-shorting.jpg)
-<br><small>Showing required cable for shorting the Skylla-i.</small>
+???+ info "Skylla-i photo"
+
+    ![skylla-i-shorting](assets/skylla-i-shorting.jpg)
+    <br><small>Showing required cable for shorting the Skylla-i.</small>

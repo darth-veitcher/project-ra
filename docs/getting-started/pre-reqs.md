@@ -5,7 +5,11 @@ hide:
   - toc
 ---
 
-Before embarking on this quest you'll need to ensure you meet some of the below pre-requisites. Whether you want to use [Home Assistant](https://www.home-assistant.io) or not is a matter of personal choice - it's not required in anyway for this. I'm including integration instructions for completeness purposes as I'll document the HA setup separately to keep this repository focussed.
+!!! warning "Acceptance of Liability"
+
+    I shouldn't really need to say this... but I will anyway. This documentation is intended for my own reference and learning. Nothing within it should be taken as official electrical guidance etc. etc. and by following any of my instructions (and tailoring for your own circumstances) you are assuming all liability for your own actions! 🤦‍♂️
+
+Before embarking on this quest you'll need to ensure you meet some of the below pre-requisites. Whether you want to use [Home Assistant](https://www.home-assistant.io) or not is a matter of personal choice - it's not required for this. I'm including integration instructions for completeness purposes as I'll document the HA setup separately to keep this repository focussed. The custom automation I have for controlling charge of the batteries during off-peak hours is pure Python in this repository and can be run independently of any host automation controller.
 
 ## Home Assistant
 
