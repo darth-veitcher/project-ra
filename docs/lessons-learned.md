@@ -47,3 +47,9 @@ Bear this in mind. It's easier to put on another layer, have a blanket etc. than
 ## You'll probably want the Cerbo GX on Ethernet
 
 Because when you turn off the inverter or disconnect AC loads for any reason the WiFi Access Point will disappear and you won't be able to connect to turn it back on ...!
+
+## The Skylla-i battery charger needs to be shorted
+
+If you aren't going to use the voltage sensors (like me) because you're going to control the device in another way / use as a direct power supply make sure you pass a small wire between the two terminals in order to short it. Otherwise it'll simply not start - lost a day of my life with this one... read the manual!
+
+![skylla-i-shorting](assets/skylla-i-shorting.jpg)
