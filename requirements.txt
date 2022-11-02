@@ -1,0 +1,6 @@
+# Pip friendly requirements for the `victron` group.
+# Exported with poetry using the following command:
+#   `poetry export --with victron --without-hashes -f requirements.txt`
+pymodbus[serial]==3.0.0 ; python_version >= "3.9" and python_version < "4.0"
+pyserial-asyncio==0.6 ; python_version >= "3.9" and python_version < "4.0"
+pyserial==3.5 ; python_version >= "3.9" and python_version < "4.0"
